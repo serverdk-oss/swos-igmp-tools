@@ -78,7 +78,7 @@ config) is available the normal way — see the `mikrotik-swos` PyPI docs.
 
 | Model | Firmware family | IGMP fields (`igmp`/`igmq`/`igfl`/`igve`) | Group table (`!igmp.b`) | Base library (port/VLAN/PoE/etc.) | Confidence |
 |---|---|---|---|---|---|
-| CSS326-24G-2S+ | Full SwOS | present | present | works | **Live-tested** against real hardware, both status reads and the IGMP extension confirmed correct |
+| CSS326-24G-2S+ | Full SwOS | present | present | works | **Live-tested** against two separate physical units, both status reads and the IGMP extension confirmed correct |
 | CRS326-24S+2Q | Full SwOS | present, identical | present | works | Confirmed against the model's real shipped web-UI JS; not live-tested on physical hardware |
 | CRS305-1G-4S+ | Full SwOS | present, identical | present | works | Same as above — JS-confirmed, not live-tested |
 | CRS309-1G-8S+ | Full SwOS | present, identical | present | works | Same as above — JS-confirmed, not live-tested |
@@ -109,6 +109,23 @@ against a **real device's own shipped code**, not inferred from staring at hex d
 If you add support for a new model, please note in a PR/issue whether it was confirmed
 against live hardware or only against reference JS — that distinction is deliberately
 preserved in the table above and should stay that way.
+
+## Contributing
+
+Reports from other switch models are welcome — especially anyone with real SwOS Lite
+hardware who can confirm the field scheme for that firmware line, or anyone who can
+live-test one of the "JS-confirmed only" models in the table above. Open an issue or PR
+with:
+- The exact model + firmware version
+- Whether IGMP snooping/querier/fast-leave/version fields are present and match the
+  naming used here (`igmp`/`igmq`/`igfl`/`igve`)
+- Whether the base `mikrotik-swos` library's functions (port stats, VLANs, PoE, etc.)
+  worked as expected
+
+## License
+
+MIT — see [LICENSE](LICENSE). Note this project depends on (but does not vendor)
+`python-mikrotik-swos`, also MIT licensed — see its own repo for its license terms.
 
 ## Safety notes
 
